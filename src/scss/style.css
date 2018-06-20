@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css?family=Play");
+body {
+  background-color: #c0c0c0;
+  font-family: 'Play', sans-serif; }
+
+li#dadosCadastrais {
+  font-weight: bold;
+  font-size: 20pt; }
+
+li#frequenciaDados {
+  font-weight: bold;
+  font-size: 20pt; }
+
+li#turma {
+  font-weight: bold;
+  font-size: 20pt; }
+
+li#modalidade {
+  font-weight: bold;
+  font-size: 20pt; }
+
+div#list-tab {
+  font-weight: bold; }
+
+button#informacoes {
+  font-size: 8pt; }
+
+.negrito {
+  font-weight: bold; }
+
+/*# sourceMappingURL=style.css.map */
