@@ -43,28 +43,29 @@
         <ul class="list-group">
             <h1 class="list-group-item negrito text-center py-5" style="font-size: 20pt;"> FREQUÊNCIA DA TURMA <?php echo 'TURMA: '.$escolhaTurma;?> &nbsp; <button class="btn btn-primary" type="submit"><a href="../../index.php" class="btn-link text-white">VOLTAR</a></button></h1>
         </ul>
-
-
         <table  class= "table table-striped table-hover bg-light">
             <thead>
                 <tr>
-                    <th class="text-center">MATRICULA<th>
+                    <th class="text-center">MATRICULA</th>
                     <th class="text-center">NOME</th>
-                    <th class="text-center">FREQUÊNCIA P = PRESENCA, F = FALTA e FJ = FALTA JUSTIFICADA</th>
+                    <th class="text-center">FREQUÊNCIA</th>
                 </tr>
             </thead>
             <tbody>
                 <?php 
-                    foreach ($sql->fetchAll() as $user) {
+                    foreach($sql->fetchAll() as $user) {
                         echo '<tr>';
                         echo '<td class="text-center">'.$user['matricula'].'</td>';
                         echo '<td class="text-center">'.$user['name'].'</td>';
-                        echo '<td class="text-center"><form method="post">
-                            <select class="custom-select">
-                                <option selectd ">F<option>
-                                <option 
-                            </select>
-                        </form></td>';
+                        echo '<td class="text-center">
+                            <form method="post" class="text-center">
+                                <select class="custom-select text-center" name="frequenciaAlunos[]" id="frequenciaAlunos">
+                                    <option value="1" name="presenca" selectd>P</option>
+                                    <option value="1" name="falta" selectd>F</option>
+                                    <option value="1" name="faltaJustificada" selectd>FJ</option>
+                                </select>
+                            </form>
+                        </td>';
                         echo '</tr>';
                     }
                 ?>
