@@ -117,9 +117,9 @@ require 'controllers/login/check.php';
                             <td>
                             <?php
                             if ($_SESSION['curso'] == 1) {
-                                    $curso = ('Informática Básica'); 
+                                $curso = ('Informática Básica');
                             } else {
-                                    $curso = ('Excel Avaçando');
+                                $curso = ('Excel Avaçando');
                             }
 
                                 echo $curso?></td>
@@ -162,10 +162,20 @@ require 'controllers/login/check.php';
                         <tr>
                             <td>AULAS TOTAIS</td>
                             <td class="text-center"><?php
-                                $aulasTotais = 30;
+                                if ($_SESSION['curso'] == 2) {
+                                    $aulasTotais = 17;
+                                } else {
+                                    $aulasTotais = 30;
+                                }
+                                
 
                                 $aulasGerais = $aulasTotais - $_SESSION['presenca'] - $_SESSION['faltas_justificadas'] - $_SESSION['faltas'];
                                 echo $aulasGerais;?></td>
+                            
+                        </tr>
+                        <tr>
+                            <td class="negrito" style="font-size: 12pt;">NÃO PODE ULTRAPASSAR DE (6) AULAS COM FALTAS</td>
+                            <td></td>
                         </tr>
                         </tbody>
                     </table>
@@ -186,17 +196,17 @@ require 'controllers/login/check.php';
                         </thead>
                         <tbody>
                         <?php
-                    
+
                         $database = db_connect();
                         $turma = $_SESSION['turma'];
 
-                        $select = $database->query("SELECT name FROM participantes WHERE turma = '$turma'");
+                        $select = $database->query("SELECT name FROM participantes WHERE turma = '$turma' ORDER BY name ASC");
                         $contagem = 0;
                         foreach ($select->fetchAll(PDO::FETCH_ASSOC) as $user) {
                             echo '<tr class="text-center">';
-                                echo '<td class="">'.$contagem = 1 + $contagem.'</td>';
-                                echo '<td class="">'.$user['name'].'</td>';
-                                echo '<td>A IMPLEMENTAR</td>';
+                            echo '<td class="">'.$contagem = 1 + $contagem.'</td>';
+                            echo '<td class="">'.$user['name'].'</td>';
+                            echo '<td>A IMPLEMENTAR</td>';
                             echo '</tr>';
                             echo '</tbody>';
                         }?>
@@ -314,7 +324,7 @@ require 'controllers/login/check.php';
                         $database = db_connect();
 
 
-                        $select = $database->query("SELECT name FROM participantes WHERE turma = '$selecaoTurmaVerificao'");
+                        $select = $database->query("SELECT name FROM participantes WHERE turma = '$selecaoTurmaVerificao' ORDER BY name ASC");
                         $contagem = 0;
                         foreach ($select->fetchAll(PDO::FETCH_ASSOC) as $user) {
                             echo '<tr class="text-center">';

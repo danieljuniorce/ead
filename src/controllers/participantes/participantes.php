@@ -2,7 +2,6 @@
 session_start();
 require_once '../init.php';
 
-
 ?>
 
 
@@ -40,25 +39,18 @@ require_once '../init.php';
 <div class="container my-5">
     <ul class="list-group">
         <h1 class="list-group-item negrito text-center py-5" style="font-size: 20pt;"> BANCO DE PARTICIPANTES &nbsp; <button class="btn btn-primary" type="submit"><a href="../../index.php" class="btn-link text-white">VOLTAR</a></button></h1>
-        <li class="list-group-item">
-            <h4 class="negrito text-center">FREQUÊNCIA DAS TURMAS</h4>
-            <form action="frequencia.php" method="post">
-                <div class="form-row">
-                    <div class="col-10 form-group">
-                        <select class="custom-select text-center" name="frequencia" id="frequencia">
-                            <option selectd>SELECIONE A TURMA</option>
-                            <option value="1">TURMA 1</option>
-                            <option value="2">TURMA 2</option>
-                            <option value="3">TURMA 3</option>
-                            <option value="4">TURMA 4</option>
-                        </select>
-                    </div>
-                    <div class="mx col-2">
-                        <button class="btn btn-primary px-5" type="submit">ESCOLHER</button>
-                    </div>
-                </div>
-            </form>
         </li>
+        <li class="list-group-item">
+                <form method="POST" action="informacoes-participantes.php">
+                    <div class="form-row">
+                        <div class="col-10 text-center">
+                            <input type="number" class="form-control" name="matriculaParticipante" placeholder="INSIRAR A MATRICULA DO PARTICIPANTE">
+                        </div>
+                        <div class="col-2 px-5">
+                            <button class="btn btn-primary" type="submit">PROCURAR</button>
+                        </div>
+                    </div>
+                </form>
     </ul>
     <?php if ($_SESSION['key'] == 3) : ?>
 
@@ -76,7 +68,7 @@ require_once '../init.php';
             <tbody>
             <?php
             $PDO = db_connect();
-            $sql = $PDO->query("SELECT * FROM participantes");
+            $sql = $PDO->query("SELECT * FROM participantes ORDER BY name ASC");
 
             if($sql->rowCount() > 0){
 
@@ -93,6 +85,24 @@ require_once '../init.php';
             ?>
             </tbody>
         </table>
+                <form method="POST" action="informacoes-participantes.php">
+                    <div class="form-row">
+                        <div class="col-10 text-center">
+                            <select name="matriculaParticipante" id="participante" class="custom-select">
+                                <?php foreach ($variable as $key => $value) : ?>
+                                    
+                                <option value="<?php echo $user['matricula']; ?>"><?php echo $user['matricula']; ?></option>
+
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="col-2 px-5">
+                            <button class="btn btn-primary" type="submit">PROCURAR</button>
+
+                        </div>
+                    </div>
+                </form>
+
     <?php else : header('Location: ../../index.php'); ?>
 
     <?php endif;?>

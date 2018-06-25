@@ -63,7 +63,7 @@
 
                     <?php
                         $PDO = db_connect();
-                        $sql = $PDO->query("SELECT * FROM participantes WHERE turma = '$turma'");
+                        $sql = $PDO->query("SELECT * FROM participantes WHERE turma = '$turma' ORDER BY name ASC");
 
                         if($sql->rowCount() > 0){
 
