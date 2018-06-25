@@ -37,20 +37,45 @@ require_once '../init.php';
 
 
 <div class="container my-5">
-    <ul class="list-group">
-        <h1 class="list-group-item negrito text-center py-5" style="font-size: 20pt;"> BANCO DE PARTICIPANTES &nbsp; <button class="btn btn-primary" type="submit"><a href="../../index.php" class="btn-link text-white">VOLTAR</a></button></h1>
-        </li>
-        <li class="list-group-item">
+    <div class="bg-light">
+    <div class="row my-2 py-5">
+        <div class="col-6">
+            <h1 class="list-group-item negrito text-center py-5" style="font-size: 20pt;"> BANCO DE PARTICIPANTES &nbsp;</h1>
+            <li class="list-group-item">
                 <form method="POST" action="informacoes-participantes.php">
                     <div class="form-row">
-                        <div class="col-10 text-center">
+                        <div class="col-9 text-center">
                             <input type="number" class="form-control" name="matriculaParticipante" placeholder="INSIRAR A MATRICULA DO PARTICIPANTE">
                         </div>
-                        <div class="col-2 px-5">
+                    <div class="col-2 px-3">
+                        <button class="btn btn-primary" type="submit">PROCURAR</button>
+                    </div>
+                    </div>
+                </form> 
+            </li>
+        </div>
+        <div class="col-6">
+            <h1 class="list-group-item negrito text-center py-5" style="font-size: 20pt;"> TROCA SENHA DO PARTICIPANTES &nbsp;</h1>
+            <li class="list-group-item">
+                <form method="POST" action="trocasenha.php">
+                    <div class="form-row">
+                        <div class="col-9 text-center">
+                            <input type="number" class="form-control" name="matriculaParticipante" placeholder="INSIRAR A MATRICULA DO PARTICIPANTE">
+                        </div>
+                        <div class="col-2 px-3">
                             <button class="btn btn-primary" type="submit">PROCURAR</button>
                         </div>
                     </div>
                 </form>
+            </li>
+        </div>
+    </div>
+    </div>
+
+    <ul class="list-group">
+
+        </li>
+
     </ul>
     <?php if ($_SESSION['key'] == 3) : ?>
 
@@ -70,7 +95,7 @@ require_once '../init.php';
             $PDO = db_connect();
             $sql = $PDO->query("SELECT * FROM participantes ORDER BY name ASC");
 
-            if($sql->rowCount() > 0){
+            if ($sql->rowCount() > 0) {
 
                 foreach ($sql->fetchAll() as $user) {
                     echo '<tr>';
@@ -85,23 +110,6 @@ require_once '../init.php';
             ?>
             </tbody>
         </table>
-                <form method="POST" action="informacoes-participantes.php">
-                    <div class="form-row">
-                        <div class="col-10 text-center">
-                            <select name="matriculaParticipante" id="participante" class="custom-select">
-                                <?php foreach ($variable as $key => $value) : ?>
-                                    
-                                <option value="<?php echo $user['matricula']; ?>"><?php echo $user['matricula']; ?></option>
-
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                        <div class="col-2 px-5">
-                            <button class="btn btn-primary" type="submit">PROCURAR</button>
-
-                        </div>
-                    </div>
-                </form>
 
     <?php else : header('Location: ../../index.php'); ?>
 
